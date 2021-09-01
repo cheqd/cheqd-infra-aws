@@ -57,35 +57,3 @@ module "node" {
   load_balancer_rpc_port = 26657
 }
 
-
-#####
-# VPC
-#####
-
-module "vpc" {
-  source   = "./modules/vpc"
-
-  # Node
-  moniker            = "${local.pool_moniker}-node-${each.value}"
-  genesis            = filebase64("node_configs/node${each.value}/config/genesis.json")
-  node_key           = filebase64("node_configs/node${each.value}/config/node_key.json")
-  priv_validator_key = filebase64("node_configs/node${each.value}/config/priv_validator_key.json")
-  node_args          = "--rpc.laddr tcp://0.0.0.0:26657 --p2p.persistent_peers ${local.node0_id}@${module.node[0].dns_name}:26656"
-
-  # Region
-  providers = {
-    aws = aws.eu-west-1
-  }
-  availability_zone = "eu-west-1a"
-
-  # Docker
-  docker_image_url       = "ghcr.io/cheqd/cheqd-node:v0.1.12"
-  docker_auth_secret_arn = "arn:aws:secretsmanager:eu-west-1:613050746026:secret:verim_gcr-XUfx0l"
-
-  # Cloudwatch
-  cloudwatch_log_region = "eu-west-1"
-
-  # Load balancer
-  load_balancer_p2p_port = 26656
-  load_balancer_rpc_port = 26657
-}
