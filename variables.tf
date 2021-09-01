@@ -7,7 +7,7 @@ variable "cidr_block" {
 }
 
 variable "region" {
-  default = "eu-west-1"
+  default = "us-east-1"
 }
 
 
