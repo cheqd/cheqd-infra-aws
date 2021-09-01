@@ -15,10 +15,6 @@ variable "projectname" {
   default = "cheqd"
 }
 
-variable "profile" {
-  default = "tarmac"
-}
-
 # Tags Array ( referenced as ${var.tags["tagname"]} )
 variable "tags" {
   type = map
