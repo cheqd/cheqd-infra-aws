@@ -1,3 +1,6 @@
+#####
+# Terraform version
+#####
 terraform {
   required_providers {
     aws = {
@@ -50,7 +53,7 @@ module "node" {
   docker_auth_secret_arn = "arn:aws:secretsmanager:eu-west-1:613050746026:secret:verim_gcr-XUfx0l"
 
   # Cloudwatch
-  cloudwatch_log_region = var.region #"eu-west-1"
+  cloudwatch_log_region = var.region 
 
   # Load balancer
   load_balancer_p2p_port = 26656
