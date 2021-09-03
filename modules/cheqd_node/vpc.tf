@@ -127,7 +127,7 @@ resource "aws_security_group_rule" "cheqd_node_ecs_service_p2p_ingress" {
   from_port         = 26656
   to_port           = 26656
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["10.9.0.0/16"]
   ipv6_cidr_blocks  = ["::/0"]
 }
 
@@ -139,7 +139,7 @@ resource "aws_security_group_rule" "cheqd_node_ecs_service_rpc_ingress" {
   from_port         = 26657
   to_port           = 26657
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["10.9.0.0/16"]
   ipv6_cidr_blocks  = ["::/0"]
 }
 

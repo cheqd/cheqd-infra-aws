@@ -49,8 +49,8 @@ module "node" {
   region = var.region
 
   # Docker
-  docker_image_url       = "ghcr.io/cheqd/cheqd-node:v0.1.12"
-  docker_auth_secret_arn = "arn:aws:secretsmanager:eu-west-1:613050746026:secret:verim_gcr-XUfx0l"
+  docker_image_url       = var.docker_image_url
+  docker_auth_secret_arn = var.docker_auth_secret_arn
 
   # Cloudwatch
   cloudwatch_log_region = var.region 

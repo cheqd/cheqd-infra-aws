@@ -31,3 +31,12 @@ variable "tags" {
     vpc         = "main"
   }
 }
+
+#Docker
+variable "docker_auth_secret_arn" {
+  default = "arn:xxxx"
+}
+
+variable "docker_image_url" {
+  default = "ghcr.io/cheqd/cheqd-node:v0.1.16"
+}
