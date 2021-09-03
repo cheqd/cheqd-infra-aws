@@ -22,15 +22,15 @@ git clone git@github.com:cheqd/cheqd-infra.git
 
 ## Step 2:
 
-Configure the variables.tf form with your aws account settings.
+Configure the variables.tf form with your AWS account settings.
 
 ## Step 3:
 
-Copy the foldere with the "node_configs" into the root of the repo.
+Copy the folder with the "node_configs" into the root of the repo.
 
 ## Step 4:
 
-Initialize the terraform
+Initialize Terraform
 ```
 terraform init
  ```
@@ -44,11 +44,11 @@ terraform plan
 
 ## Step 6:
 
-Aplly the changes
+Apply the changes
 ```
 terraform apply
  ```
 
 ## Step 7:
 
-Check the services in ECS.
+Check the services in ECS
