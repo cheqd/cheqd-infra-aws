@@ -24,12 +24,19 @@ git clone git@github.com:cheqd/cheqd-infra.git
 
 Configure the variables.tf form with your AWS account settings.
 
+```
 env = environment of your project.
+
 cidr_block = of your vpc.
+
 region = region of your project in aws.
+
 projectname = name of your project.
+
 docker_auth_secret_arn = arn of you docker image save it in the secret manager.
+
 docker_image_url = url of the current docker image.
+```
 
 ## Step 3:
 
