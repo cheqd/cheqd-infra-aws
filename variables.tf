@@ -15,15 +15,15 @@ variable "projectname" {
 }
 
 variable "genesis" {
-  default = "arn:aws:secretsmanager:us-east-1:613050746026:secret:GENESIS_TEST-H0ktie"
+  default = "ARN:GENESIS_TEST"
 }
 
 variable "node_key" {
-  default = "arn:aws:secretsmanager:us-east-1:613050746026:secret:NODE_KEY_TEST-iCCEUg"
+  default = "ARN:NODE_KEY_TEST"
 }
 
 variable "priv_validator_key" {
-  default = "arn:aws:secretsmanager:us-east-1:613050746026:secret:PRIV_VALIDATOR_KEY_TEST-7GBkyX"
+  default = "ARN:PRIV_VALIDATOR_KEY_TEST"
 }
 
 # Tags Array ( referenced as ${var.tags["tagname"]} )
