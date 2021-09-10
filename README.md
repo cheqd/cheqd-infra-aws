@@ -33,9 +33,15 @@ region = region of your project in aws.
 
 projectname = name of your project.
 
-docker_auth_secret_arn = arn of you docker image save it in the secret manager.
-
 docker_image_url = url of the current docker image.
+
+generis_secret_arn = arn of your genesis variable set in secrets manager.
+
+node_key_secret_arn = arn of your node_key variable set in secrets manager.
+
+priv_validator_key_secret_arn = arn of your priv_validator_key variable set in secrets manager.
+
+
 ```
 
 ## Step 3:

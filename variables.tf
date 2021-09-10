@@ -10,9 +10,20 @@ variable "region" {
   default = "us-east-1"
 }
 
-
 variable "projectname" {
   default = "cheqd"
+}
+
+variable "genesis" {
+  default = "arn:aws:secretsmanager:us-east-1:613050746026:secret:GENESIS_TEST-H0ktie"
+}
+
+variable "node_key" {
+  default = "arn:aws:secretsmanager:us-east-1:613050746026:secret:NODE_KEY_TEST-iCCEUg"
+}
+
+variable "priv_validator_key" {
+  default = "arn:aws:secretsmanager:us-east-1:613050746026:secret:PRIV_VALIDATOR_KEY_TEST-7GBkyX"
 }
 
 # Tags Array ( referenced as ${var.tags["tagname"]} )
@@ -33,9 +44,6 @@ variable "tags" {
 }
 
 #Docker
-variable "docker_auth_secret_arn" {
-  default = "arn:xxxx"
-}
 
 variable "docker_image_url" {
   default = "ghcr.io/cheqd/cheqd-node:v0.1.16"

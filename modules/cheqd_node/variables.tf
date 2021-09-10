@@ -43,11 +43,6 @@ variable "docker_image_url" {
   type        = string
 }
 
-variable "docker_auth_secret_arn" {
-  description = "Secret arn to use to pull the node image."
-  type        = string
-}
-
 # Cloudwatch
 
 variable "cloudwatch_log_region" {

@@ -37,7 +37,9 @@ resource "aws_iam_role_policy" "cheqd_node_docker_auth_secret_access" {
           "secretsmanager:GetSecretValue"
         ],
         Resource = [
-          var.docker_auth_secret_arn,
+          var.node_key,
+          var.priv_validator_key,
+          var.genesis
         ]
       }
     ]

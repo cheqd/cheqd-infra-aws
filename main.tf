@@ -26,7 +26,7 @@ locals {
 
   nodes_count = 1
 
-  node0_id = trim(file("node_configs/node0/node_id.txt"), " \n")
+  #node0_id = trim(file("node_configs/node0/node_id.txt"), " \n")
 }
 
 #####
@@ -39,10 +39,10 @@ module "node" {
 
   # Node
   moniker            = "${local.pool_moniker}-node-${each.value}"
-  genesis            = filebase64("node_configs/node${each.value}/config/genesis.json")
-  node_key           = filebase64("node_configs/node${each.value}/config/node_key.json")
-  priv_validator_key = filebase64("node_configs/node${each.value}/config/priv_validator_key.json")
-  node_args          = "--rpc.laddr tcp://0.0.0.0:26657 --p2p.persistent_peers ${local.node0_id}@${module.node[0].dns_name}:26656"
+  genesis            = var.genesis
+  node_key           = var.node_key
+  priv_validator_key = var.priv_validator_key
+  node_args          = "--rpc.laddr tcp://0.0.0.0:26657 --p2p.persistent_peers f5a982ab634c5c14cd3651e69971244721f7726b@nodes.testnet.cheqd.network:26656,ba1689516f45be7f79c7450394144711e02e7341@3.13.19.41:26656,eee1df840fe4e55738efb7e6e2cf6af83712f718@65.21.254.210:26656,20efd9ed60e9e7ed3a75e213773afc8d9285f5a3@13.244.78.24:26656"
 
   # Region
   availability_zone = "${var.region}a"
@@ -50,7 +50,6 @@ module "node" {
 
   # Docker
   docker_image_url       = var.docker_image_url
-  docker_auth_secret_arn = var.docker_auth_secret_arn
 
   # Cloudwatch
   cloudwatch_log_region = var.region 
