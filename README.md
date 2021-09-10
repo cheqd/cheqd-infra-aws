@@ -41,7 +41,6 @@ node_key_secret_arn = arn of your node_key variable set in secrets manager.
 
 priv_validator_key_secret_arn = arn of your priv_validator_key variable set in secrets manager.
 
-
 ```
 
 ## Step 3:
