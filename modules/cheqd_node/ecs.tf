@@ -66,9 +66,6 @@ resource "aws_ecs_task_definition" "cheqd_node" {
     {
       name  = "cheqd_node"
       image = var.docker_image_url
-      repositoryCredentials = {
-        credentialsParameter = var.docker_auth_secret_arn
-      }
       logConfiguration = {
         logDriver = "awslogs"
         options = {
@@ -94,20 +91,22 @@ resource "aws_ecs_task_definition" "cheqd_node" {
           value = "${var.env}-${var.moniker}"
         },
         {
-          name  = "GENESIS"
-          value = "${var.genesis}"
-        },
-        {
-          name  = "NODE_KEY"
-          value = "${var.node_key}"
-        },
-        {
-          name  = "PRIV_VALIDATOR_KEY"
-          value = "${var.priv_validator_key}"
-        },
-        {
           name  = "NODE_ARGS"
           value = "${var.node_args}"
+        }
+      ]
+      secrets = [
+        {
+          valueFrom = "${var.genesis}",
+          name = "GENESIS"
+        },
+        {
+          valueFrom = "${var.node_key}",
+          name = "NODE_KEY"
+        },
+        {
+          valueFrom = "${var.priv_validator_key}",
+          name = "PRIV_VALIDATOR_KEY"
         }
       ]
       mountPoints = [

@@ -21,7 +21,7 @@ resource "aws_vpc" "cheqd_node" {
 resource "aws_subnet" "cheqd_node" {
   vpc_id            = aws_vpc.cheqd_node.id
   availability_zone = var.availability_zone
-  cidr_block        = "${cidrsubnet(var.cidr_block, 6, 2)}" #"10.9.0.0/24"
+  cidr_block        = "${cidrsubnet(var.cidr_block, 6, 2)}" 
    map_public_ip_on_launch = false
 
   tags = {
@@ -104,6 +104,12 @@ resource "aws_nat_gateway" "private" {
   }
 }
 
+#  resource "aws_route" "nat_routes" {
+#    count                  = 1
+#    destination_cidr_block = "0.0.0.0/0"
+#    route_table_id = aws_default_route_table.cheqd_node.id 
+#    nat_gateway_id = aws_nat_gateway.private[0].id
+#  }
 
 #####
 # ECS service
