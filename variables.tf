@@ -7,7 +7,7 @@ variable "cidr_block" {
 }
 
 variable "region" {
-  default = "us-east-1"
+  default = "eu-west-1"
 }
 
 variable "projectname" {
@@ -15,15 +15,15 @@ variable "projectname" {
 }
 
 variable "genesis" {
-  default = "ARN:GENESIS_TEST"
+  default = "ARN:GENESIS_TEST" # example arn:secretsmanager:Region:AccountId:secret:tutorials/MyFirstSecret-jiObOV
 }
 
 variable "node_key" {
-  default = "ARN:NODE_KEY_TEST"
+  default = "ARN:NODE_KEY_TEST" # example arn:secretsmanager:Region:AccountId:secret:tutorials/MyFirstSecret-jiObOV
 }
 
 variable "priv_validator_key" {
-  default = "ARN:PRIV_VALIDATOR_KEY_TEST"
+  default = "ARN:PRIV_VALIDATOR_KEY_TEST" # example arn:secretsmanager:Region:AccountId:secret:tutorials/MyFirstSecret-jiObOV
 }
 
 # Tags Array ( referenced as ${var.tags["tagname"]} )
