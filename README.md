@@ -6,7 +6,7 @@ This repo cointains the AWS services needed to recreate the nodes infrastructure
 
 ## Prerequisites
 
-- AWS account access key ID and secret access key. [Link] https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-creds
+### AWS account access key ID and secret access key. [Link](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-creds)
 
 Access key ID and secret access key
 Access keys consist of an access key ID and secret access key, which are used to sign programmatic requests that you make to AWS. If you don't have access keys, you can create them from the AWS Management Console. As a best practice, do not use the AWS account root user access keys for any task where it's not required. Instead, create a new administrator IAM user with access keys for yourself.
@@ -15,7 +15,7 @@ The only time that you can view or download the secret access key is when you cr
 
 To create access keys for an IAM user
 
-Sign in to the AWS Management Console and open the [IAM_console_at] https://console.aws.amazon.com/iam/.
+Sign in to the AWS Management Console and open the [IAM console at](https://console.aws.amazon.com/iam/).
 
 In the navigation pane, choose Users.
 
@@ -38,7 +38,7 @@ Keep the keys confidential in order to protect your AWS account and never email 
 After you download the .csv file, choose Close. When you create an access key, the key pair is active by default, and you can use the pair right away.
 
 
-- Install in your asset the [aws_cli] https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
+### Install in your asset the [aws_cli] https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
 
 Quick configuration with aws configure
 For general use, the aws configure command is the fastest way to set up your AWS CLI installation. When you enter this command, the AWS CLI prompts you for four pieces of information:
