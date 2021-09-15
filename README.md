@@ -25,7 +25,7 @@ In the Access keys section, choose Create access key.
 
 To view the new access key pair, choose Show. You will not have access to the secret access key again after this dialog box closes. Your credentials will look something like this:
 
-```
+```bash
 Access key ID: AKIAIOSFODNN7EXAMPLE
 
 Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
@@ -37,19 +37,18 @@ Keep the keys confidential in order to protect your AWS account and never email 
 
 After you download the .csv file, choose Close. When you create an access key, the key pair is active by default, and you can use the pair right away.
 
-
-### Install in your asset the [aws_cli] https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
+### Install in your asset the [aws_cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
 Quick configuration with aws configure
 For general use, the aws configure command is the fastest way to set up your AWS CLI installation. When you enter this command, the AWS CLI prompts you for four pieces of information:
 
-Access key ID
+* Access key ID
 
-Secret access key
+* Secret access key
 
-AWS Region
+* AWS Region
 
-Output format
+* Output format
 
 The AWS CLI stores this information in a profile (a collection of settings) named default in the credentials file. By default, the information in this profile is used when you run an AWS CLI command that doesn't explicitly specify a profile to use. For more information on the credentials file, see Configuration and credential file settings
 
@@ -57,7 +56,7 @@ The following example shows sample values. Replace them with your own values as 
 
 Example:
 
-```
+```bash
 $ aws configure
 AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
 AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
@@ -65,20 +64,19 @@ Default region name [None]: us-west-2
 Default output format [None]: json
 ```
 
-
-
-## Step 1:
+## Step 1
 
 Download the repo:
- ```
+
+ ```bash
 git clone git@github.com:cheqd/cheqd-infra.git
  ```
 
-## Step 2:
+## Step 2
 
 Configure the variables.tf form with your AWS account settings.
 
-```
+```bash
 env = environment of your project.
 
 cidr_block = of your vpc.
@@ -97,31 +95,34 @@ priv_validator_key_secret_arn = arn of your priv_validator_key variable set in s
 
 ```
 
-## Step 3:
+## Step 3
 
 Copy the folder with the "node_configs" into the root of the repo.
 
-## Step 4:
+## Step 4
 
 Initialize Terraform
-```
+
+```bash
 terraform init
  ```
 
-## Step 5:
+## Step 5
 
 Plan the changes
-```
+
+```bash
 terraform plan
  ```
 
-## Step 6:
+## Step 6
 
 Apply the changes
-```
+
+```bash
 terraform apply
  ```
 
-## Step 7:
+## Step 7
 
 Check the services in ECS
