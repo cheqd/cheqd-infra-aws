@@ -286,7 +286,7 @@ You can read other advices about running node in production [here](https://docs.
 
 ## Step 2 Download the Cheqd-Infra repo
 
-Insrtruction:
+Instruction:
 
  ```bash
 git clone git@github.com:cheqd/cheqd-infra.git
@@ -300,8 +300,8 @@ The varaibles to be defined are:
 * priv-validator-key
 * genesis
 
-Those variables previously have to be generated in step 1.
-In AWS Secrets Manage. Those values should be defined:
+Those variables have to be generated previously in step 1.
+In AWS Secrets Manager you should configure them with:
 
 * Type = 'Other type secrets'
 * Specify the key/value pairs to be stored in this secret = 'PlainText'
@@ -318,15 +318,15 @@ Once you set the 3 varaibles in the AWS Secrets Manager you will be available to
 ## Step 4 Configure the variables.tf form with your AWS account settings
 
 ```comment
-env = environment of your project.
+env = environment value of your project. Example: 'prod'
 
-cidr_block = of your vpc.
+cidr_block = of your vpc. Example: '10.9.0.0/16'
 
-region = region of your project in aws.
+region = region of your project in aws. Example: 'eu-west-1'
 
-projectname = name of your project.
+projectname = name of your project. Example: 'cheqd'
 
-docker_image_url = url of the current docker image.
+docker_image_url = url of the current docker image. 
 
 generis_secret_arn = arn of your genesis variable set in secrets manager.
 
@@ -336,29 +336,25 @@ priv_validator_key_secret_arn = arn of your priv_validator_key variable set in s
 
 ```
 
-## Step 4
+## Step 4 Initialize Terraform
 
-Copy the folder with the "node_configs" into the root of the repo.
-
-## Step 4
-
-Initialize Terraform
+Run this command in your console:
 
 ```bash
 terraform init
  ```
 
-## Step 5
+## Step 5  Plan the changes
 
-Plan the changes
+Run this command in your console:
 
 ```bash
 terraform plan
  ```
 
-## Step 6
+## Step 6 Apply the changes
 
-Apply the changes
+Run this command in your console:
 
 ```bash
 terraform apply
