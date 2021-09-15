@@ -64,7 +64,7 @@ Default region name [None]: us-west-2
 Default output format [None]: json
 ```
 
-## Step 1: Running a new node
+## Step 1: Setting up a new node
 
 This document describes in detail how to configure infrastructure and deploy a new node \(observer or validator\).
 
@@ -284,17 +284,38 @@ You can read other advices about running node in production [here](https://docs.
 
 [More details](https://github.com/cheqd/cheqd-node)
 
-## Step 2
+## Step 2 Download the Cheqd-Infra repo
 
-Download the repo:
+Insrtruction:
 
  ```bash
 git clone git@github.com:cheqd/cheqd-infra.git
  ```
 
-## Step 3
+## Step 3 Define variables in Secrets Manager
 
-Configure the variables.tf form with your AWS account settings.
+The varaibles to be defined are:
+
+* node-key
+* priv-validator-key
+* genesis
+
+Those variables previously have to be generated in step 1.
+In AWS Secrets Manage. Those values should be defined:
+
+* Type = 'Other type secrets'
+* Specify the key/value pairs to be stored in this secret = 'PlainText'
+* The value of the secret should be set in base64, to your variables run the folliwing command
+
+```bash
+base64 genesis.json
+```
+
+[Secrets Manager Tutorial](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html)
+
+Once you set the 3 varaibles in the AWS Secrets Manager you will be available to continue.
+
+## Step 4 Configure the variables.tf form with your AWS account settings
 
 ```comment
 env = environment of your project.
