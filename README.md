@@ -64,6 +64,8 @@ Default region name [None]: us-west-2
 Default output format [None]: json
 ```
 
+### Install in your asset [terraform](https://www.terraform.io/downloads.html)
+
 ## Step 1: Setting up a new node
 
 This document describes in detail how to configure infrastructure and deploy a new node \(observer or validator\).
@@ -362,4 +364,4 @@ terraform apply
 
 ## Step 7
 
-Check the services in ECS
+Check the services in ECS, if you can see the cluster, the service and the task running.
