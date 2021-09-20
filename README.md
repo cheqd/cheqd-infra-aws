@@ -319,6 +319,7 @@ Once you set the 3 varaibles in the AWS Secrets Manager you will be available to
 
 ## Step 4 Configure the variables.tf form with your AWS account settings
 
+
 ```comment
 env = environment value of your project. Example: 'prod'
 
@@ -327,6 +328,7 @@ cidr_block = of your vpc. Example: '10.9.0.0/16'
 region = region of your project in aws. Example: 'eu-west-1'
 
 projectname = name of your project. Example: 'cheqd'
+
 
 docker_image_url = url of the current docker image. 
 
