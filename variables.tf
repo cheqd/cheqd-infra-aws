@@ -8,11 +8,7 @@ variable "cidr_block" {
 
 variable "region" {
   type = string
-  description = "Choose a Region: eu-west-1 or us-west-1"
-  validation {
-    condition     = contains(["eu-west-1", "us-west-1"], lower(var.region))
-    error_message = "Unsupported Region specified. Supported regions include: eu-west-1 or us-west-1."
-  }
+  description = "Enter a Region"
 }
 
 variable "projectname" {
