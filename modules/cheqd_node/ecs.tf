@@ -3,7 +3,7 @@
 #####
 
 resource "aws_ecs_cluster" "cheqd_node" {
-  name               = "${var.env}_${var.moniker}_cluster_tf"
+  name               = "${var.moniker}_cluster_tf"
   capacity_providers = ["FARGATE"]
 
   setting {
@@ -17,7 +17,7 @@ resource "aws_ecs_cluster" "cheqd_node" {
 #####
 
 resource "aws_ecs_service" "cheqd_node" {
-  name                   = "${var.env}_${var.moniker}_service_tf"
+  name                   = "${var.moniker}_service_tf"
   cluster                = aws_ecs_cluster.cheqd_node.id
   desired_count          = 1
   task_definition        = aws_ecs_task_definition.cheqd_node.arn
@@ -54,7 +54,7 @@ resource "aws_ecs_service" "cheqd_node" {
 #####
 
 resource "aws_ecs_task_definition" "cheqd_node" {
-  family                   = "${var.env}_${var.moniker}_task_def_tf"
+  family                   = "${var.moniker}_task_def_tf"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = 1024                                                # 1vCPU
@@ -88,7 +88,7 @@ resource "aws_ecs_task_definition" "cheqd_node" {
       environment = [
         {
           name  = "NODE_MONIKER"
-          value = "${var.env}-${var.moniker}"
+          value = "${var.moniker}"
         },
         {
           name  = "NODE_ARGS"
@@ -97,29 +97,29 @@ resource "aws_ecs_task_definition" "cheqd_node" {
       ]
       secrets = [
         {
-          valueFrom = "${var.genesis}",
-          name = "GENESIS"
-        },
-        {
-          valueFrom = "${var.node_key}",
-          name = "NODE_KEY"
-        },
-        {
-          valueFrom = "${var.priv_validator_key}",
-          name = "PRIV_VALIDATOR_KEY"
-        }
+           valueFrom = aws_secretsmanager_secret.genesis.arn,
+           name = "GENESIS"
+         },
+         {
+           valueFrom = aws_secretsmanager_secret.node_key.arn,
+           name = "NODE_KEY"
+         },
+         {
+           valueFrom = aws_secretsmanager_secret.priv_validator_key.arn,
+           name = "PRIV_VALIDATOR_KEY"
+         }
       ]
       mountPoints = [
         {
           containerPath = "/home/cheqd/.cheqdnode"
-          sourceVolume  = "${var.env}_${var.moniker}_volume"
+          sourceVolume  = "${var.moniker}_volume"
         }
       ]
     }
   ])
 
   volume {
-    name = "${var.env}_${var.moniker}_volume"
+    name = "${var.moniker}_volume"
 
     efs_volume_configuration {
       file_system_id     = aws_efs_file_system.cheqd_node.id

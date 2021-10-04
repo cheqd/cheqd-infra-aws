@@ -37,6 +37,9 @@ module "node" {
   for_each = toset(formatlist("%s", range(local.nodes_count)))
   source   = "./modules/cheqd_node"
 
+  # VPC
+  cidr_block = var.cidr_block
+
   # Node
   moniker            = "${local.pool_moniker}-node-${each.value}"
   genesis            = var.genesis
@@ -57,5 +60,9 @@ module "node" {
   # Load balancer
   load_balancer_p2p_port = 26656
   load_balancer_rpc_port = 26657
+
+  genesis_arn = ""
+  node_key_arn = ""
+  priv_validator_key_arn = ""
 }
 

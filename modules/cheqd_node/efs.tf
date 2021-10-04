@@ -5,7 +5,7 @@
 resource "aws_efs_file_system" "cheqd_node" {
   encrypted = true
   tags = {
-    Name = "${var.env}_${var.moniker}_fs"
+    Name = "${var.moniker}_fs"
   }
 }
 

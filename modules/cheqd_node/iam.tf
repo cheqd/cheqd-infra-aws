@@ -7,7 +7,7 @@
 #####
 
 resource "aws_iam_role" "cheqd_node_ecs_task_execution_role" {
-  name = "${var.env}_${var.moniker}_${var.region}_ecs_task_execution_role_tf"
+  name = "${var.moniker}_ecs_task_execution_role_tf"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -37,9 +37,9 @@ resource "aws_iam_role_policy" "cheqd_node_docker_auth_secret_access" {
           "secretsmanager:GetSecretValue"
         ],
         Resource = [
-          var.node_key,
-          var.priv_validator_key,
-          var.genesis
+          aws_secretsmanager_secret.node_key.arn,
+          aws_secretsmanager_secret.priv_validator_key.arn,
+          aws_secretsmanager_secret.genesis.arn
         ]
       }
     ]
@@ -47,7 +47,7 @@ resource "aws_iam_role_policy" "cheqd_node_docker_auth_secret_access" {
 }
 
 resource "aws_iam_role_policy" "cloudwatch_access" {
-  name = "${var.env}_${var.moniker}_${var.region}_cloudwatch_access"
+  name = "${var.moniker}_cloudwatch_access"
   role = aws_iam_role.cheqd_node_ecs_task_execution_role.id
 
   policy = jsonencode({
@@ -70,7 +70,7 @@ resource "aws_iam_role_policy" "cloudwatch_access" {
 #####
 
 resource "aws_iam_role" "cheqd_node_ecs_task_role" {
-  name = "${var.env}_${var.moniker}_${var.region}_ecs_task_role_tf"
+  name = "${var.moniker}_ecs_task_role_tf"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -88,7 +88,7 @@ resource "aws_iam_role" "cheqd_node_ecs_task_role" {
 }
 
 resource "aws_iam_role_policy" "efs_access" {
-  name = "${var.env}_${var.moniker}_${var.region}_efs_access"
+  name = "${var.moniker}_efs_access"
   role = aws_iam_role.cheqd_node_ecs_task_role.id
 
   policy = jsonencode({
@@ -108,7 +108,7 @@ resource "aws_iam_role_policy" "efs_access" {
 }
 
 resource "aws_iam_role_policy" "allow_execute_command" {
-  name = "${var.env}_${var.moniker}_${var.region}_allow_execute_command"
+  name = "${var.moniker}_allow_execute_command"
   role = aws_iam_role.cheqd_node_ecs_task_role.id
 
   policy = jsonencode({

@@ -1,8 +1,27 @@
-###
-# Input variable definitions
-###
+variable "env" {
+  default = "new"
+}
 
-# Node
+variable "projectname" {
+  default = "cheqd"
+}
+
+# Tags Array ( referenced as ${var.tags["tagname"]} )
+variable "tags" {
+  type = map
+
+  default = {
+    Name        = "cheqd"
+    projectname = "cheqd"
+    act         = "new"
+    costcentre  = ""
+    env         = "new"
+    repository  = "GH_REPO_URL"
+    script      = "Terraform"
+    service     = "cheqd-app"
+    vpc         = "main"
+  }
+}
 
 variable "moniker" {
   description = "Moniker of the node."
@@ -24,19 +43,27 @@ variable "priv_validator_key" {
   type        = string
 }
 
+variable "domain_name" {
+  default = "testnet.cheqd.network"
+}
+
+variable "route53_zone" {
+  default = "cheqd.network"
+}
+
+variable "cidr_block" {
+  description = "cidr block for vpc and subnets"
+}
+
 variable "node_args" {
   description = "Additional arguments to pass to the node."
   type        = string
 }
 
-# Zones
-
 variable "availability_zone" {
   description = "Availability zone to deploy node infrastructure."
   type        = string
 }
-
-# Docker
 
 variable "docker_image_url" {
   description = "URL of the node docker image."
@@ -44,7 +71,6 @@ variable "docker_image_url" {
 }
 
 # Cloudwatch
-
 variable "cloudwatch_log_region" {
   description = "Cloudwatch log region."
   type        = string
@@ -61,14 +87,3 @@ variable "load_balancer_rpc_port" {
   description = "rpc to expose through LB."
   type        = string
 }
-
-variable "env" {
-  default = "test"
-}
-
-variable "cidr_block" {
-  default = "10.9.0.0/16"
-}
-
-
-
