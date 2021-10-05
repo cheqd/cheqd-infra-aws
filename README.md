@@ -363,7 +363,7 @@ Run this command in your console:
 terraform apply
  ```
 
- The application will ask to fill the following varaibles:
+ The application will ask to fill the following variables:
 
  ```comment
 env = environment value of your project. Example: 'prod'
