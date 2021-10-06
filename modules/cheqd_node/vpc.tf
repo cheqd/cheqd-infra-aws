@@ -3,12 +3,12 @@
 #####
 
 resource "aws_vpc" "cheqd_node" {
-  cidr_block           = "10.9.0.0/16"
+  cidr_block           = var.cidr_block 
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
-    Name = "${var.env}_${var.moniker}_vpc"
+    Name = "${var.moniker}_vpc"
   }
 }
 
@@ -25,18 +25,18 @@ resource "aws_subnet" "cheqd_node" {
    map_public_ip_on_launch = false
 
   tags = {
-    Name = "${var.env}_${var.moniker}_private_subnet_1"
+    Name = "${var.moniker}_private_subnet_1"
   }
 }
 
 resource "aws_subnet" "cheqd_node_2" {
   vpc_id            = aws_vpc.cheqd_node.id
-  availability_zone = var.availability_zone
+  availability_zone = "${var.region}b"
   cidr_block        = "${cidrsubnet(var.cidr_block, 6, 3)}" 
    map_public_ip_on_launch = false
 
   tags = {
-    Name = "${var.env}_${var.moniker}_private_subnet_2"
+    Name = "${var.moniker}_private_subnet_2"
   }
 }
 
@@ -45,7 +45,7 @@ resource "aws_internet_gateway" "cheqd_node" {
   vpc_id = aws_vpc.cheqd_node.id
 
   tags = {
-    Name = "${var.env}_${var.moniker}_gateway"
+    Name = "${var.moniker}_gateway"
   }
 }
 
@@ -60,7 +60,7 @@ resource "aws_default_route_table" "cheqd_node" {
   }
 
   tags = {
-    Name = "${var.env}_${var.moniker}_route_table"
+    Name = "${var.moniker}_route_table"
   }
 }
 
@@ -72,18 +72,18 @@ resource "aws_subnet" "public_cheqd_node" {
    map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.env}_${var.moniker}_public_subnet_1"
+    Name = "${var.moniker}_public_subnet_1"
   }
 }
 
 resource "aws_subnet" "public_cheqd_node_2" {
   vpc_id            = aws_vpc.cheqd_node.id
-  availability_zone = var.availability_zone
+  availability_zone = "${var.region}b"
   cidr_block        = "${cidrsubnet(var.cidr_block, 6, 1)}" 
    map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.env}_${var.moniker}_public_subnet_2"
+    Name = "${var.moniker}_public_subnet_2"
   }
 }
 
@@ -99,17 +99,11 @@ resource "aws_nat_gateway" "private" {
   subnet_id     = aws_subnet.public_cheqd_node.id
 
   tags = {
-    Name       = "nat-${var.env}-${var.moniker}-private"
+    Name       = "nat-${var.moniker}-private"
     Function   = "route table"
   }
 }
 
-#  resource "aws_route" "nat_routes" {
-#    count                  = 1
-#    destination_cidr_block = "0.0.0.0/0"
-#    route_table_id = aws_default_route_table.cheqd_node.id 
-#    nat_gateway_id = aws_nat_gateway.private[0].id
-#  }
 
 #####
 # ECS service
@@ -121,7 +115,7 @@ resource "aws_security_group" "cheqd_node_ecs_service" {
   vpc_id      = aws_vpc.cheqd_node.id
 
   tags = {
-    Name = "${var.env}_${var.moniker}_ecs_service"
+    Name = "${var.moniker}_ecs_service"
   }
 }
 
@@ -133,7 +127,7 @@ resource "aws_security_group_rule" "cheqd_node_ecs_service_p2p_ingress" {
   from_port         = 26656
   to_port           = 26656
   protocol          = "tcp"
-  cidr_blocks       = ["10.9.0.0/16"]
+  cidr_blocks       = [var.cidr_block] 
   ipv6_cidr_blocks  = ["::/0"]
 }
 
@@ -145,7 +139,7 @@ resource "aws_security_group_rule" "cheqd_node_ecs_service_rpc_ingress" {
   from_port         = 26657
   to_port           = 26657
   protocol          = "tcp"
-  cidr_blocks       = ["10.9.0.0/16"]
+  cidr_blocks       = [var.cidr_block] 
   ipv6_cidr_blocks  = ["::/0"]
 }
 
@@ -182,7 +176,7 @@ resource "aws_security_group" "cheqd_node_efs" {
   vpc_id      = aws_vpc.cheqd_node.id
 
   tags = {
-    Name = "${var.env}_${var.moniker}_efs"
+    Name = "${var.moniker}_efs"
   }
 }
 

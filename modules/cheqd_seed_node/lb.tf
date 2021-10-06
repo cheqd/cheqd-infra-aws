@@ -6,7 +6,7 @@ resource "aws_lb" "cheqd_node" {
   name               = "${var.moniker}-lb"
   internal           = false
   load_balancer_type = "network"
-  subnets            = [aws_subnet.public_cheqd_node.id, aws_subnet.public_cheqd_node_2.id]
+  subnets            = [var.public_subnet, var.public_subnet_2]
 }
 
 # RPC
@@ -16,7 +16,7 @@ resource "aws_lb_target_group" "cheqd_node_rpc" {
   target_type = "ip"
   port        = 80
   protocol    = "TCP"
-  vpc_id      = aws_vpc.cheqd_node.id
+  vpc_id      = var.vpc_id
  
 
   lifecycle { # Is required to prevent `Error deleting Target Group: ResourceInUse`
@@ -43,30 +43,13 @@ resource "aws_lb_listener" "cheqd_node_rpc" {
     target_group_arn = aws_lb_target_group.cheqd_node_rpc.arn
   }
 }
-
-# resource "aws_lb_listener_rule" "ecs-listener-rule" {
-#   listener_arn = aws_lb_listener.cheqd_node_rpc.arn 
-#   priority     = 98
-
-#   action {
-#     type             = "forward"
-#     target_group_arn = aws_lb_target_group.cheqd_node_rpc.arn
-#   }
-
-#   condition {
-#     host_header {
-#       values = ["${var.domain_name}"] # rule forwards the request to a specific target group based on the DNS record
-#     }
-#   }
-# }
-
 # P2P
 resource "aws_lb_target_group" "cheqd_node_p2p" {
   name        = "${var.moniker}-p2p-tg" # Random suffix is required by create_before_destroy
   target_type = "ip"
   port        = 80 #var.load_balancer_p2p_port
   protocol    = "TCP"
-  vpc_id      = aws_vpc.cheqd_node.id
+  vpc_id      = var.vpc_id
 
   lifecycle { # Is required to prevent `Error deleting Target Group: ResourceInUse`
     create_before_destroy = true

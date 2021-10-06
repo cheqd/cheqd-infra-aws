@@ -16,7 +16,7 @@ resource "aws_efs_file_system" "cheqd_node" {
 resource "aws_efs_mount_target" "cheqd_node" {
   file_system_id  = aws_efs_file_system.cheqd_node.id
   security_groups = [aws_security_group.cheqd_node_efs.id]
-  subnet_id       = aws_subnet.cheqd_node.id
+  subnet_id       = var.private_subnet
 }
 
 #####
