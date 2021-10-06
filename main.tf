@@ -23,11 +23,11 @@ provider "aws" {
 
 locals {
   # seed
-  pool_seed_moniker = "seed1-${substr("${var.region}", 0, 2)}-testnet-cheqd"
+  pool_seed_moniker = "seed1-${substr("${var.region}", 0, 2)}"
   pool_seed_dns = "seed1.${substr("${var.region}", 0, 2)}.${var.domain_name}"
 
   # node
-  pool_moniker = "node1-${substr("${var.region}", 0, 2)}-testnet-cheqd"
+  pool_moniker = "node1-${substr("${var.region}", 0, 2)}"
   pool_dns = "node1.${substr("${var.region}", 0, 2)}.${var.domain_name}"
 
   nodes_count = 1

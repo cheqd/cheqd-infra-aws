@@ -341,17 +341,21 @@ terraform plan
 The application will ask to fill the following varaibles:
 
  ```comment
-env = environment value of your project. Example: 'prod'
-
 cidr_block = of your vpc. Example: '10.9.0.0/16'
 
 region = region of your project in aws. Example: 'eu-west-1'
 
-generis_secret_arn = arn of your genesis variable set in secrets manager.
+generis = base64 genesis variable.
 
-node_key_secret_arn = arn of your node_key variable set in secrets manager.
+node_key = base64 node_key variable.
 
-priv_validator_key_secret_arn = arn of your priv_validator_key variable set in secrets manager.
+priv_validator_key = base64 priv_validator_key variable.
+
+generis_seed = base64 genesis variable for the seed node.
+
+node_key_seed = base64 node_key variable for the seed node.
+
+priv_validator_seed = base64 priv_validator_key variable for the seed node.
 
 ```
 
@@ -365,18 +369,22 @@ terraform apply
 
  The application will ask to fill the following variables:
 
- ```comment
-env = environment value of your project. Example: 'prod'
-
+```comment
 cidr_block = of your vpc. Example: '10.9.0.0/16'
 
 region = region of your project in aws. Example: 'eu-west-1'
 
-generis_secret_arn = arn of your genesis variable set in secrets manager.
+generis = base64 genesis variable.
 
-node_key_secret_arn = arn of your node_key variable set in secrets manager.
+node_key = base64 node_key variable.
 
-priv_validator_key_secret_arn = arn of your priv_validator_key variable set in secrets manager.
+priv_validator_key = base64 priv_validator_key variable.
+
+generis_seed = base64 genesis variable for the seed node.
+
+node_key_seed = base64 node_key variable for the seed node.
+
+priv_validator_seed = base64 priv_validator_key variable for the seed node.
 
 ```
 
