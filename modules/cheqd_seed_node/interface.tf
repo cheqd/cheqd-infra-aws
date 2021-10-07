@@ -24,3 +24,5 @@ variable "private_subnet_2" {
 }
 variable "vpc_id" {
 }
+variable "lb_logs_s3" {
+}
