@@ -17,6 +17,22 @@ resource "aws_lb" "cheqd_node" {
 
 resource "aws_s3_bucket" "lb_logs" {
     bucket            = "alb-${var.region}-logs"
+
+    policy =<<EOF
+{
+"Id": "AddPutPolicy",
+"Version": "2012-10-17",
+"Statement": [
+          {
+          "Sid":"AllowPut",
+          "Action": "s3:PutObject",
+          "Effect": "Allow",
+          "Resource": "arn:aws:s3:::alb-${var.region}-logs/*",
+          "Principal": "*"
+          }
+]
+}
+EOF
     
     lifecycle_rule {
       id      = "log"
