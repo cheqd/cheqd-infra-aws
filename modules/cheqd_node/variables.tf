@@ -89,3 +89,7 @@ variable "load_balancer_rpc_port" {
   description = "rpc to expose through LB."
   type        = string
 }
+
+variable "email_list" {
+  description = "List of emails."
+}

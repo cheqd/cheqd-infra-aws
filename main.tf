@@ -61,6 +61,7 @@ module "node" {
 
   # Cloudwatch
   cloudwatch_log_region = var.region
+  email_list = var.email_list
 
   # Load balancer
   load_balancer_p2p_port = 26656
@@ -111,6 +112,7 @@ module "seed" {
 
   # Cloudwatch
   cloudwatch_log_region = var.region
+  email_list = var.email_list
 
   # Load balancer
   load_balancer_p2p_port = 26656

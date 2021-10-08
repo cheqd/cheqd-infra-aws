@@ -80,3 +80,7 @@ variable "route53_zone" {
   description = "Zone for the route53 records."
   type        = string
 }
+
+variable "email_list" {
+  description = "List of emails."
+}

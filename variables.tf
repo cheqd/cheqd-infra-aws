@@ -74,3 +74,7 @@ variable "cidr_block" {
 variable "docker_image_url" {
   default = "ghcr.io/cheqd/cheqd-node:v0.2.2"
 }
+
+variable "email_list" {
+  default = "example@outlook.com"
+}
