@@ -320,6 +320,8 @@ env = environment value of your project. Example: 'prod'
 projectname = name of your project. Example: 'cheqd'
 
 docker_image_url = url of the current docker image. 
+
+email_list = list of emails to send sns notifications.
 ```
 
 ## Step 4 Initialize Terraform
