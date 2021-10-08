@@ -7,6 +7,13 @@ resource "aws_lb" "cheqd_node" {
   internal           = false
   load_balancer_type = "network"
   subnets            = [var.public_subnet, var.public_subnet_2]
+
+   access_logs {
+    bucket  = var.lb_logs_s3
+    prefix  = "${var.moniker}"
+    enabled = true
+  }
+  
 }
 
 # RPC

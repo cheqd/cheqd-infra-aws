@@ -117,6 +117,7 @@ module "seed" {
   load_balancer_rpc_port = 26657
   domain_name = "${local.pool_seed_dns}"
   route53_zone = var.route53_zone
+  lb_logs_s3   = module.node[0].lb_logs_s3_bucket
 
   genesis_seed_arn = ""
   node_key_seed_arn = ""

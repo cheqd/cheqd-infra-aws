@@ -7,7 +7,30 @@ resource "aws_lb" "cheqd_node" {
   internal           = false
   load_balancer_type = "network"
   subnets            = [aws_subnet.public_cheqd_node.id, aws_subnet.public_cheqd_node_2.id]
+  
+  access_logs {
+    bucket  = aws_s3_bucket.lb_logs.bucket
+    prefix  = "${var.moniker}"
+    enabled = true
+  }
 }
+
+resource "aws_s3_bucket" "lb_logs" {
+    bucket            = "alb-${var.region}-logs"
+    
+    lifecycle_rule {
+      id      = "log"
+      enabled = true
+      expiration {
+        days = 90
+      }
+    }
+    versioning {
+        enabled    = false
+        mfa_delete = false
+    }
+}
+
 
 # RPC
 

@@ -43,3 +43,8 @@ output "cheqd_node_private_subnet_2_id" {
   description = "Private subnet 2."
   value       = aws_subnet.cheqd_node_2.id
 }
+
+output "lb_logs_s3_bucket" {
+  description = "S3 bucket for logging."
+  value       = aws_s3_bucket.lb_logs.bucket
+}
