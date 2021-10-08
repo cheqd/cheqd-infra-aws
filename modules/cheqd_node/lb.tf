@@ -16,7 +16,7 @@ resource "aws_lb" "cheqd_node" {
 }
 
 resource "aws_s3_bucket" "lb_logs" {
-    bucket            = "alb-${var.region}-logs"
+    bucket            = "${var.moniker}-logs"
 
     policy =<<EOF
 {
