@@ -4,7 +4,7 @@
 
 [**`cheqd-node`**](https://github.com/cheqd/cheqd-node) is the server/node portion of the cheqd network stack, built using [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) and [Tendermint](https://github.com/tendermint/tendermint).
 
-**`cheqd-infra`** is set of infrastructure & DevOps tooling assets for accelerating the deployment of complex `cheqd-node` installations in cloud hosting providers.
+**`cheqd-infra`** is a set of infrastructure & DevOps tooling assets for accelerating the deployment of complex `cheqd-node` installations in cloud hosting providers.
 
 Currently, AWS is the only supported cloud platform supported in this set of DevOps assets. We hope to support other cloud platforms in the future and welcome contributions from the open source-community from anyone who wants to contribute automation assets.
 
