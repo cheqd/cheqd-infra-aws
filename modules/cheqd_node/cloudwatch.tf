@@ -63,3 +63,83 @@ resource "aws_iam_role_policy" "cheqd_node_vpc" {
 }
 EOF
 }
+
+resource "aws_cloudwatch_metric_alarm" "CPUUtilization_alarm_warning" {
+  alarm_name                = "warning-${var.moniker}-cpu-utilization"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = "2"
+  metric_name               = "CPUUtilization"
+  namespace                 = "AWS/ECS"
+  period                    = "120"
+  statistic                 = "Average"
+  threshold                 = "70"
+  alarm_description         = "Warning - This metric monitors ECS CPU utilization for ${var.moniker}"
+  alarm_actions             =  [aws_sns_topic.cpu_memory_topic.arn]
+  ok_actions                =  [aws_sns_topic.cpu_memory_topic.arn]
+  insufficient_data_actions = []
+  treat_missing_data        = "notBreaching"
+  dimensions = {
+    ClusterName = "${aws_ecs_cluster.cheqd_node.name}"
+    ServiceName = "${aws_ecs_service.cheqd_node.name}"
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "CPUUtilization_alarm_critical" {
+  alarm_name                = "critical-${var.moniker}-cpu-utilization"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = "2"
+  metric_name               = "CPUUtilization"
+  namespace                 = "AWS/ECS"
+  period                    = "120"
+  statistic                 = "Average"
+  threshold                 = "85"
+  alarm_description         = "Critical - This metric monitors ECS CPU utilization for ${var.moniker}"
+  alarm_actions             =  [aws_sns_topic.cpu_memory_topic.arn]
+  ok_actions                =  [aws_sns_topic.cpu_memory_topic.arn]
+  insufficient_data_actions = []
+  treat_missing_data        = "notBreaching"
+  dimensions = {
+    ClusterName = "${aws_ecs_cluster.cheqd_node.name}"
+    ServiceName = "${aws_ecs_service.cheqd_node.name}"
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "MemoryUtilization_alarm_warning" {
+  alarm_name                = "warning-${var.moniker}-memory"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = "2"
+  metric_name               = "MemoryUtilization"
+  namespace                 = "AWS/ECS"
+  period                    = "120"
+  statistic                 = "Average"
+  threshold                 = "50"
+  alarm_description         = "Warning - This metric monitors ECS memory utilization for ${var.moniker}"
+  alarm_actions             = [aws_sns_topic.cpu_memory_topic.arn]
+  ok_actions                = [aws_sns_topic.cpu_memory_topic.arn]
+  insufficient_data_actions = []
+  treat_missing_data        = "notBreaching"
+  dimensions = {
+    ClusterName = "${aws_ecs_cluster.cheqd_node.name}"
+    ServiceName = "${aws_ecs_service.cheqd_node.name}"
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "MemoryUtilization_alarm_critical" {
+  alarm_name                = "critical-${var.moniker}-memory"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = "2"
+  metric_name               = "MemoryUtilization"
+  namespace                 = "AWS/ECS"
+  period                    = "120"
+  statistic                 = "Average"
+  threshold                 = "70"
+  alarm_description         = "Critical - This metric monitors ECS memory utilization for ${var.moniker}"
+  alarm_actions             = [aws_sns_topic.cpu_memory_topic.arn]
+  ok_actions                = [aws_sns_topic.cpu_memory_topic.arn]
+  insufficient_data_actions = []
+  treat_missing_data        = "notBreaching"
+  dimensions = {
+    ClusterName = "${aws_ecs_cluster.cheqd_node.name}"
+    ServiceName = "${aws_ecs_service.cheqd_node.name}"
+  }
+}
