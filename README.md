@@ -1,5 +1,7 @@
 # cheqd: DevOps & Infrastructure Docs
 
+## NOTE: This repository is currently under development and NOT recommended to be used
+
 **cheqd** is a purpose-built network for decentralised identity.
 
 [**`cheqd-node`**](https://github.com/cheqd/cheqd-node) is the server/node portion of the cheqd network stack, built using [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) and [Tendermint](https://github.com/tendermint/tendermint).
